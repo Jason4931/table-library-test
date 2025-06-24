@@ -1,18 +1,64 @@
 'use client';
-import { login } from '@/app/actions/auth'
- 
-export default function AuthForm() {
+import React, { useEffect, useState } from 'react';
+import { LockOutlined, UserOutlined, AntDesignOutlined } from '@ant-design/icons';
+import { useStyle } from "@/app/page"
+import '@ant-design/v5-patch-for-react-19';
+import { Button, Form, Input, ConfigProvider } from 'antd';
+import { login } from '../actions/auth';
+import { useRouter } from 'next/navigation';
+const AuthForm = () => {
+  const router = useRouter();
+  const { styles } = useStyle();
+  const [form] = Form.useForm();
+  const [clientReady, setClientReady] = useState(false);
+  // To disable submit button at the beginning.
+  useEffect(() => {
+    setClientReady(true);
+  }, []);
+  const onFinish = values => {
+    login(values);
+    console.log('Finish:', values);
+  };
   return (
-    <form action={login} className='flex flex-col gap-4 w-lg'>
-      <div className="flex flex-col">
-        <label className='text-gray-500' htmlFor="name">Name</label>
-        <input className='px-3 py-3 mx-2 w-full  rounded-2xl' id="name" name="name" placeholder="Name" />
-      </div>
-      <div className="flex flex-col">
-        <label className='text-gray-500' htmlFor="password">Password</label>
-        <input className='px-3 py-3 mx-2 w-full rounded-2xl' id="password" name="password" type="password" placeholder='Password' />
-      </div>
-      <button className="bg-blue-400 cursor-pointer text-white p-3 m-5 rounded-full" type="submit">Sign Up</button>
-    </form>
-  )
-}
+    <Form form={form} name="login" layout="vertical" onFinish={onFinish}>
+      <Form.Item
+        name="email"
+        label="E-Mail"
+        rules={[{ required: true, message: 'Please input your email!' }]}
+      >
+        <Input prefix={<UserOutlined />} placeholder="Username" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        label="Password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
+      </Form.Item>
+      <Form.Item shouldUpdate>
+        {() => (
+          <ConfigProvider
+            button={{
+              className: styles.linearGradientButton,
+            }}
+          >
+            <Button
+              type="primary"
+              htmlType="submit"
+              disabled={
+                !clientReady ||
+                !form.isFieldsTouched(true) ||
+                !!form.getFieldsError().filter(({ errors }) => errors.length).length
+              }
+              icon={<AntDesignOutlined />}
+              // onClick={() => router.push('/test')}
+            >
+              Log in
+            </Button>
+          </ConfigProvider>
+        )}
+      </Form.Item>
+    </Form>
+  );
+};
+export default AuthForm;

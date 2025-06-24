@@ -1,8 +1,23 @@
 // import { LoginFormSchema } from '@/app/lib/definition'
 import { redirect } from 'next/navigation';
  
-export async function login(state, formData) {
+export async function login(credentials) {
 
+  const response = await fetch("https://jk-go-52014148654.asia-southeast2.run.app/api/login",{
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials)
+  }
+)
+  console.log(response)
+  if (response.ok) {
+
+    // localStorage.setItem('user', response.data)
+    redirect('/test');
+    // return "Login Berhasil"
+  } else {
+    console.log('Login Gagal')
+  }
 
   // Validate form fields
 //   const validatedFields = LoginFormSchema.safeParse({
@@ -17,7 +32,6 @@ export async function login(state, formData) {
 //     }
 //   }
 
-   redirect('/test');
  
   // Call the provider or db to create a user...
 }

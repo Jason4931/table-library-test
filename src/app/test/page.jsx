@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useState } from 'react';
-import { Button, Table } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Button, Table, Switch, Select, Input, InputNumber } from 'antd';
+import '@ant-design/v5-patch-for-react-19';
 
 export default function Test() {
   const [dataSource, setDataSource] = useState([
@@ -10,12 +11,16 @@ export default function Test() {
       name: 'Mike',
       age: 32,
       address: '10 Downing Street',
+      active: false,
+      status: '',
     },
     {
       key: '2',
       name: 'John',
       age: 42,
       address: '10 Downing Street',
+      active: true,
+      status: 'approved',
     },
   ]);
 
@@ -27,17 +32,10 @@ export default function Test() {
         name: '',
         age: 0,
         address: '',
+        active: false,
+        status: ''
       },
     ]);
-  };
-
-  const handleCellChange = (e, recordKey, dataIndex) => {
-    const value = e.target.innerText;
-    setDataSource(prev =>
-      prev.map(row =>
-        row.key === recordKey ? { ...row, [dataIndex]: value } : row
-      )
-    );
   };
 
   const handlePaste = (e, recordKey, dataIndex) => {
@@ -55,14 +53,16 @@ export default function Test() {
         if (updated[targetIndex]) {
           updated[targetIndex] = {
             ...updated[targetIndex],
-            [dataIndex]: line,
+            [dataIndex]: dataIndex == 'age' ? parseInt(line) : line,
           };
         } else {
           updated.push({
             key: `${updated.length + 1}`,
             name: dataIndex === 'name' ? line : '',
-            age: 0,
+            age: dataIndex === 'age' ? parseInt(line) : 0,
             address: dataIndex === 'address' ? line : '',
+            active: false,
+            status: ''
           });
         }
       });
@@ -71,26 +71,35 @@ export default function Test() {
     });
   };
 
-  const renderEditableCell = (dataIndex) => (text, record) => (
-    <div
-      contentEditable
-      suppressContentEditableWarning
-      onBlur={e => handleCellChange(e, record.key, dataIndex)}
-      onPaste={e => handlePaste(e, record.key, dataIndex)}
-      onInput={e => {
-        // Optional: clear leftover paste residue if needed
-        const html = e.currentTarget.innerHTML;
-        if (html.includes('<br')) e.currentTarget.innerHTML = '';
-      }}
-      onKeyDown={e => {
-        if (e.key === 'Enter') {
-          e.preventDefault(); // blocks line breaks on Enter key
-        }
-      }}
-    >
-      {text}
-    </div>
-  );
+  const renderEditableCell = (dataIndex) => (text, record) => {
+    const isAge = dataIndex === 'age';
+    const value = record[dataIndex];
+
+    const handleChange = (val) => {
+      setDataSource(prev =>
+        prev.map(row =>
+          row.key === record.key ? { ...row, [dataIndex]: val } : row
+        )
+      );
+    };
+
+    return isAge ? (
+      <InputNumber
+        value={value}
+        onChange={handleChange}
+        onPaste={(e) => handlePaste(e, record.key, dataIndex)}
+        min={0}
+        style={{ width: '100%' }}
+      />
+    ) : (
+      <Input
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        onPaste={(e) => handlePaste(e, record.key, dataIndex)}
+        onPressEnter={(e) => e.preventDefault()}
+      />
+    );
+  };
 
   const columns = [
     {
@@ -111,7 +120,51 @@ export default function Test() {
       key: 'address',
       render: renderEditableCell('address'),
     },
+    {
+      title: 'Active',
+      dataIndex: 'active',
+      key: 'active',
+      render: (checked, record) => (
+        <Switch
+          checked={!!checked}
+          onChange={(value) => {
+            setDataSource(prev =>
+              prev.map(row =>
+                row.key === record.key ? { ...row, active: value } : row
+              )
+            );
+          }}
+        />
+      ),
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (value, record) => (
+        <Select
+          value={value}
+          style={{ width: 120 }}
+          onChange={(newValue) => {
+            setDataSource(prev =>
+              prev.map(row =>
+                row.key === record.key ? { ...row, status: newValue } : row
+              )
+            );
+          }}
+          options={[
+            { label: 'Pending', value: 'pending' },
+            { label: 'Approved', value: 'approved' },
+            { label: 'Rejected', value: 'rejected' },
+          ]}
+        />
+      ),
+    }
   ];
+
+  // useEffect(() => {
+  //   console.log(dataSource);
+  // }, [dataSource]);
 
   return (
     <div className="p-8">

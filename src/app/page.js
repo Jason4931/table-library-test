@@ -1,6 +1,39 @@
+'use client'
+
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
+import { AntDesignOutlined } from '@ant-design/icons';
+import { Button, ConfigProvider, Space } from 'antd';
+import { createStyles } from 'antd-style';
+
+export const useStyle = createStyles(({ prefixCls, css }) => ({
+  linearGradientButton: css`
+    &.${prefixCls}-btn-primary:not([disabled]):not(.${prefixCls}-btn-dangerous) {
+      > span {
+        position: relative;
+      }
+
+      &::before {
+        content: '';
+        background: linear-gradient(135deg, #6253e1, #04befe);
+        position: absolute;
+        inset: -1px;
+        opacity: 1;
+        transition: all 0.3s;
+        border-radius: inherit;
+      }
+
+      &:hover::before {
+        opacity: 0;
+      }
+    }
+  `,
+}));
 
 export default function Home() {
+  const { styles } = useStyle();
+  const router = useRouter();
+  
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -50,6 +83,23 @@ export default function Home() {
             Read our docs
           </a>
         </div>
+        <ConfigProvider
+          button={{
+            className: styles.linearGradientButton,
+          }}
+        >
+          <div className="w-full flex justify-center">
+            <ConfigProvider
+              button={{
+                className: styles.linearGradientButton,
+              }}
+            >
+              <Button type="primary" size="large" icon={<AntDesignOutlined />} onClick={() => router.push('/test')}>
+                Library Test
+              </Button>
+            </ConfigProvider>
+          </div>
+        </ConfigProvider>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
         <a
