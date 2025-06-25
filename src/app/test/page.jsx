@@ -308,7 +308,7 @@ export default function Test() {
         placeholder="Search anything..."
         allowClear
         onChange={(e) => setSearchText(e.target.value.toLowerCase())}
-        className="mb-4 w-full max-w-md"
+        className="w-full max-w-md"
       />
       <Table dataSource={filteredData} columns={columns} pagination={false} className='my-4 border border-black rounded' />
       <Button type="primary" onClick={handleReset}>Reset Data (temp)</Button>
