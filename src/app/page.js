@@ -1,10 +1,12 @@
 'use client'
 
+import { useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { AntDesignOutlined } from '@ant-design/icons';
 import { Button, ConfigProvider, Space } from 'antd';
 import { createStyles } from 'antd-style';
+import '@ant-design/v5-patch-for-react-19';
 
 export const useStyle = createStyles(({ prefixCls, css }) => ({
   linearGradientButton: css`
@@ -33,7 +35,15 @@ export const useStyle = createStyles(({ prefixCls, css }) => ({
 export default function Home() {
   const { styles } = useStyle();
   const router = useRouter();
-  
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      redirect('/login')
+    }
+    redirect('/test')
+  }, []);
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
