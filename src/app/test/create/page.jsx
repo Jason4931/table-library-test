@@ -1,12 +1,19 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { redirect, useRouter } from 'next/navigation';
 import { Form, Button, Input, InputNumber, Switch, Select } from 'antd';
 import { SwapLeftOutlined } from '@ant-design/icons';
 import '@ant-design/v5-patch-for-react-19';
 
 export default function CreateData() {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      redirect('/login')
+    }
+  }, []);
+
   const router = useRouter();
   const onFinish = values => {
     const existing = JSON.parse(localStorage.getItem('tableData') || '[]');

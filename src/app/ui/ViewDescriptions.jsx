@@ -8,6 +8,13 @@ import { SwapLeftOutlined } from '@ant-design/icons';
 import '@ant-design/v5-patch-for-react-19';
 
 export function ViewDescriptions() {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      redirect('/login')
+    }
+  }, []);
+
   const [items, setItems] = useState([]);
   const params = useParams();
 
