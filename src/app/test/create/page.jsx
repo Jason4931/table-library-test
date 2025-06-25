@@ -35,7 +35,7 @@ export default function CreateData() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-white">
       <Button onClick={() => redirect('/test')} icon={<SwapLeftOutlined />} className="mb-4">Back</Button>
       <Form
         name="basic"

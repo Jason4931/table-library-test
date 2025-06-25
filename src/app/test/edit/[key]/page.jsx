@@ -48,7 +48,7 @@ export default function EditData() {
   };
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-white">
       <Button onClick={() => router.replace('/test')} icon={<SwapLeftOutlined />} className="mb-4">Back</Button>
       <Form
         form={form}

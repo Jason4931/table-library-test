@@ -34,15 +34,14 @@ export function ViewDescriptions() {
   }, [params.key])
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-white">
       <ConfigProvider
         theme={{
           components: {
             Descriptions: {
-              labelColor: 'white',
-              titleColor: 'white',
-              contentColor: 'white'
-
+              labelColor: 'black',
+              titleColor: 'black',
+              contentColor: 'black'
             },
           },
         }}
