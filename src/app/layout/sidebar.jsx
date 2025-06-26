@@ -4,7 +4,7 @@ import { Menu, Button } from "antd";
 import {
   HomeOutlined,
   AppstoreOutlined,
-  LogoutOutlined
+  LogoutOutlined,
 } from "@ant-design/icons";
 import { usePathname, useRouter, redirect } from "next/navigation";
 
@@ -22,13 +22,13 @@ const Sidebar = ({ collapsed }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    redirect('/');
-  }
+    localStorage.removeItem("token");
+    redirect("/");
+  };
 
   return (
     <>
-      <div className="flex flex-col h-full justify-between fixed top-0 left-0 z-50">
+      <div className="flex flex-col h-full justify-between top-0 left-0 z-50">
         <div>
           <div className="h-16 flex items-center justify-center text-white text-xl">
             {collapsed ? "L" : "Lizant"}

@@ -9,9 +9,9 @@ const { Sider, Content } = Layout;
 
 const MainLayout = ({ children }) => {
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      redirect('/login')
+      redirect("/login");
     }
   }, []);
 
@@ -30,7 +30,9 @@ const MainLayout = ({ children }) => {
       </Sider>
       <Layout>
         <Navbar collapsed={collapsed} toggle={toggle} />
-        <Content className="m-4 p-4 bg-gray-50 overflow-auto max-h-screen">{children}</Content>
+        <Content className="m-4 p-4 bg-gray-50 overflow-y-auto max-h-screen">
+          {children}
+        </Content>
       </Layout>
     </Layout>
   );
