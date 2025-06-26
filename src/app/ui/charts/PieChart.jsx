@@ -17,7 +17,7 @@ const data = [
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
-const PieChart = () => {
+const PieChartComponent = () => {
   return (
     <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4 text-center">Pie Chart Example</h2>
@@ -47,4 +47,4 @@ const PieChart = () => {
   );
 };
 
-export default PieChart;
+export default PieChartComponent;

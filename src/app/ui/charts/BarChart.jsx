@@ -18,7 +18,7 @@ const data = [
   { name: "May", value: 590 },
 ];
 
-const BarChart = () => {
+const BarChartComponent = () => {
   return (
     <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4 text-center">Bar Chart Example</h2>
@@ -36,4 +36,4 @@ const BarChart = () => {
   );
 };
 
-export default BarChart;
+export default BarChartComponent;

@@ -18,7 +18,7 @@ const data = [
   { name: "May", value: 590 },
 ];
 
-const LineChart = () => {
+const LineChartComponent = () => {
   return (
     <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-bold mb-4 text-center">Line Chart Example</h2>
@@ -41,4 +41,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default LineChartComponent;

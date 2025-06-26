@@ -28,7 +28,7 @@ const Sidebar = ({ collapsed }) => {
 
   return (
     <>
-      <div className="flex flex-col h-full justify-between">
+      <div className="flex flex-col h-full justify-between fixed top-0 left-0 z-50">
         <div>
           <div className="h-16 flex items-center justify-center text-white text-xl">
             {collapsed ? "L" : "Lizant"}
@@ -53,7 +53,7 @@ const Sidebar = ({ collapsed }) => {
             {!collapsed && "Logout"}
           </Button>
         </div>
-      </div>More actions
+      </div>
     </>
   );
 };

@@ -14,7 +14,7 @@ const Navbar = ({ collapsed, toggle }) => {
           }
         )}
       </div>
-      <div className="flex items-center space-x-4">//profile & notif
+      <div className="flex items-center space-x-4 my-3">//profile & notif
         <div className="w-8 h-8 bg-gray-200 rounded-full" />
         <div className="w-8 h-8 bg-gray-200 rounded-full" />
         <div className="w-8 h-8 bg-gray-200 rounded-full" />

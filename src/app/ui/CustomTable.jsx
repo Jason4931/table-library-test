@@ -93,7 +93,7 @@ export default function CustomTable({ initialData = [], storageKey, columns, act
     ) : (
       <Input value={value} onChange={e => handleChange(e.target.value)} onPaste={e => handlePaste(e, record.key, dataIndex)} onPressEnter={e => e.preventDefault()} />
     );
-  };
+  };//NOT YET
 
   const handleCreate = () => {
     setDataSource(prev => {
@@ -102,11 +102,11 @@ export default function CustomTable({ initialData = [], storageKey, columns, act
       while (used.has(newKey)) newKey++;
       return [...prev, { key: `${newKey}`, name: '', age: 0, address: '', active: false, status: '' }];
     });
-  };
+  };//NOT YET
 
   const handleReset = () => {
     setDataSource([...initialData]);
-  };
+  };//DONE
 
   const filteredData = dataSource.filter(item => {
     const text = searchText.toLowerCase();
@@ -117,7 +117,7 @@ export default function CustomTable({ initialData = [], storageKey, columns, act
       String(item.active).includes(text) ||
       item.status?.toLowerCase().includes(text)
     );
-  });
+  });//NOT YET
 
   function formatColumns(columnsProp, dataSource, renderEditableCell, setDataSource, router) {
     return [

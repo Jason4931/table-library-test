@@ -24,13 +24,13 @@ const MainLayout = ({ children }) => {
         trigger={null}
         collapsible
         collapsed={collapsed}
-        className="bg-gray-800"
+        className="bg-gray-800 fixed top-0 left-0 h-screen"
       >
         <Sidebar collapsed={collapsed} />
       </Sider>
       <Layout>
         <Navbar collapsed={collapsed} toggle={toggle} />
-        <Content className="m-4 p-4 bg-gray-50">{children}</Content>
+        <Content className="m-4 p-4 bg-gray-50 overflow-auto max-h-screen">{children}</Content>
       </Layout>
     </Layout>
   );

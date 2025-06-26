@@ -1,7 +1,10 @@
 "use client";
 import React from "react";
 import MainLayout from "@/app/layout/mainlayout";
-import { DollarSign, Users, ShoppingCart, Eye } from "lucide-react";
+import { DollarSign, Users, ShoppingCart, Eye, BarChart3, ArrowUp, ArrowDown, TrendingUp } from "lucide-react";
+import BarChartComponent from "../ui/charts/BarChart";
+import LineChartComponent from "../ui/charts/LineChart";
+import PieChartComponent from "../ui/charts/PieChart";
 
 const Dashboard = () => {
   const stats = [
@@ -119,7 +122,7 @@ const Dashboard = () => {
                 </div>
                 <TrendingUp className="w-5 h-5 text-blue-500" />
               </div>
-              {/* <LineChart /> */}
+              <LineChartComponent />
             </div>
 
             {/* Sales by Category */}
@@ -135,7 +138,7 @@ const Dashboard = () => {
                 </div>
                 <BarChart3 className="w-5 h-5 text-green-500" />
               </div>
-              <PieChart />
+              <PieChartComponent />
             </div>
           </div>
 
@@ -154,7 +157,7 @@ const Dashboard = () => {
                 </div>
                 <BarChart3 className="w-5 h-5 text-orange-500" />
               </div>
-              <ColumnChart />
+              <BarChartComponent />
             </div>
 
             {/* Traffic Overview */}
@@ -170,7 +173,7 @@ const Dashboard = () => {
                 </div>
                 <TrendingUp className="w-5 h-5 text-purple-500" />
               </div>
-              <AreaChart />
+              <PieChartComponent />
             </div>
           </div>
         </div>
