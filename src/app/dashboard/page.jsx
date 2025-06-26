@@ -1,5 +1,6 @@
-<<<<<<< HEAD
+'use client'
 import React from "react";
+import MainLayout from "@/app/layout/mainlayout";
 import {
   BarChart3,
   TrendingUp,
@@ -10,13 +11,12 @@ import {
   ArrowUp,
   ArrowDown,
 } from "lucide-react";
-import LineChart from "./charts/LineChart";
-import ColumnChart from "./charts/ColumnChart";
-import PieChart from "./charts/PieChart";
-import AreaChart from "./charts/AreaChart";
-import MainPage from "../page/page";
+import LineChart from "@/app/ui/charts/LineChart";
+import ColumnChart from "@/app/ui/charts/ColumnChart";
+import PieChart from "@/app/ui/charts/PieChart";
+import AreaChart from "@/app/ui/charts/AreaChart";
 
-const MainPage = () => {
+const Dashboard = () => {
   const stats = [
     {
       title: "Total Revenue",
@@ -53,7 +53,7 @@ const MainPage = () => {
   ];
 
   return (
-    <Dashboard>
+    <MainLayout>
       <div className="min-h-screen bg-gray-50">
         {/* Header */}
         <div className="bg-white shadow-sm border-b border-gray-200">
@@ -133,7 +133,7 @@ const MainPage = () => {
                 </div>
                 <TrendingUp className="w-5 h-5 text-blue-500" />
               </div>
-              <LineChart />
+              {/* <LineChart /> */}
             </div>
 
             {/* Sales by Category */}
@@ -189,18 +189,7 @@ const MainPage = () => {
           </div>
         </div>
       </div>
-    </Dashboard>
-=======
-"use client";
-import React from "react";
-import MainLayout from "@/app/component/mainlayout";
-
-const Dashboard = () => {
-  return (
-    <MainLayout>
-      <h1>Dashboard</h1>
     </MainLayout>
->>>>>>> 4f3a97dfcfe47a7e29e017096b84b3c400e4c94d
   );
 };
 
