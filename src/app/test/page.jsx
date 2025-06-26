@@ -4,7 +4,6 @@ import React from 'react';
 import '@ant-design/v5-patch-for-react-19';
 import MainLayout from "@/app/layout/mainlayout";
 import CustomTable from "@/app/ui/CustomTable";
-import { nullable } from 'zod';
 
 export default function Test() {
   return (
@@ -67,7 +66,8 @@ export default function Test() {
             }
           }
         ]}
-        actions={['create', 'view', 'edit', 'delete']}
+        actions={['create', 'view', 'edit', 'delete', 'reset', 'search']}
+        url='/test'
       />
     </MainLayout>
   );

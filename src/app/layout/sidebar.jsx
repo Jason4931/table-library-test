@@ -5,6 +5,7 @@ import {
   HomeOutlined,
   AppstoreOutlined,
   LogoutOutlined,
+  UserOutlined
 } from "@ant-design/icons";
 import { usePathname, useRouter, redirect } from "next/navigation";
 
@@ -15,6 +16,7 @@ const Sidebar = ({ collapsed }) => {
   const menuItems = [
     { key: "/dashboard", icon: <HomeOutlined />, label: "Dashboard" },
     { key: "/test", icon: <AppstoreOutlined />, label: "Test" },
+    { key: "/usertest", icon: <UserOutlined />, label: "User" }
   ];
 
   const handleClick = ({ key }) => {
