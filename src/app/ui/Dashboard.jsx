@@ -11,7 +11,7 @@ import {
 
 const { Header, Sider, Content } = Layout;
 
-export default function Dashboard() {
+export default function Dashboard({ children }) {
   const [collapsed, setCollapsed] = React.useState(false);
 
   const toggle = () => {
@@ -59,7 +59,7 @@ export default function Dashboard() {
             <div className="w-8 h-8 bg-gray-200 rounded-full" />
           </div>
         </Header>
-        <Content className="m-4 p-4 bg-gray-50">{/* Konten halaman */}</Content>
+        <Content className="m-4 p-4 bg-gray-50">{children}</Content>
       </Layout>
     </Layout>
   );

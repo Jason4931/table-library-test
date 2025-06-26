@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import {
   BarChart3,
@@ -189,7 +190,18 @@ const MainPage = () => {
         </div>
       </div>
     </Dashboard>
+=======
+"use client";
+import React from "react";
+import MainLayout from "@/app/component/mainlayout";
+
+const Dashboard = () => {
+  return (
+    <MainLayout>
+      <h1>Dashboard</h1>
+    </MainLayout>
+>>>>>>> 4f3a97dfcfe47a7e29e017096b84b3c400e4c94d
   );
 };
 
-export default MainPage;
+export default Dashboard;
