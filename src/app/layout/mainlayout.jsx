@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from "react";
 import { Layout } from "antd";
-import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
+import Sidebar from "./sidebar";
+import Navbar from "./navbar";
 import { redirect } from "next/navigation";
 import '@ant-design/v5-patch-for-react-19';
 
