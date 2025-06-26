@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import MainLayout from "@/app/layout/mainlayout";
+import { DollarSign, Users, ShoppingCart, Eye } from "lucide-react";
 
 const Dashboard = () => {
   const stats = [
@@ -87,9 +88,8 @@ const Dashboard = () => {
                           <ArrowDown className="w-4 h-4 text-red-500 mr-1" />
                         )}
                         <span
-                          className={`text-sm font-medium ${
-                            stat.isPositive ? "text-green-600" : "text-red-600"
-                          }`}
+                          className={`text-sm font-medium ${stat.isPositive ? "text-green-600" : "text-red-600"
+                            }`}
                         >
                           {stat.change}
                         </span>

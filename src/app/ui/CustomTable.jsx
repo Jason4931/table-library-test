@@ -124,7 +124,6 @@ export default function CustomTable({ initialData = [], storageKey, columns, act
       { title: 'ID', dataIndex: 'key', key: 'key' },
       ...columnsProp.map(col => {
         const colName = Object.keys(col)[0]; // e.g. 'name', 'age', etc
-        const colType = col[colName]; // e.g. 'string', 'integer', 'boolean', 'enum'
         const features = col.features || {};
 
         // Base column
@@ -136,8 +135,17 @@ export default function CustomTable({ initialData = [], storageKey, columns, act
         };
 
         // Replace filters (map values from dataSource if needed)
-        if (features.filters && typeof features.filters === 'function') {
-          column.filters = features.filters(dataSource);
+        if (features.filters) {
+          column.filters =
+            typeof features.filters === 'function'
+              ? features.filters(dataSource)
+              : features.filters;
+        }
+        if (features.sorter) {
+          column.sorter =
+            typeof features.sorter === 'function'
+              ? features.sorter
+              : (a, b) => 0;
         }
 
         // Default editable cell for all types
@@ -150,19 +158,25 @@ export default function CustomTable({ initialData = [], storageKey, columns, act
         key: 'actions',
         render: (_, record) => (
           <div className="flex gap-2">
-            <Button size="small" onClick={() => router.push(`/test/${record.key}`)}>
-              View
-            </Button>
-            <Button size="small" type="primary" onClick={() => router.push(`/test/edit/${record.key}`)}>
-              Update
-            </Button>
-            <Button
-              size="small"
-              danger
-              onClick={() => setDataSource(prev => prev.filter(r => r.key !== record.key))}
-            >
-              Delete
-            </Button>
+            {actions.includes('view') && (
+              <Button size="small" onClick={() => router.push(`/test/${record.key}`)}>
+                View
+              </Button>
+            )}
+            {actions.includes('edit') && (
+              <Button size="small" type="primary" onClick={() => router.push(`/test/edit/${record.key}`)}>
+                Update
+              </Button>
+            )}
+            {actions.includes('delete') && (
+              <Button
+                size="small"
+                danger
+                onClick={() => setDataSource(prev => prev.filter(r => r.key !== record.key))}
+              >
+                Delete
+              </Button>
+            )}
           </div>
         ),
       },
