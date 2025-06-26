@@ -1,9 +1,12 @@
 import { ViewDescriptions } from "@/app/ui/ViewDescriptions"
+import MainLayout from "@/app/layout/mainlayout";
 
 export default function ViewData() {
   return (
     <>
-      <ViewDescriptions />
+      <MainLayout>
+        <ViewDescriptions />
+      </MainLayout>
     </>
   );
 }

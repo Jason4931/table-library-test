@@ -1,10 +1,17 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { ConfigProvider, Form } from "antd";
 import AuthForm from "@/app/ui/AuthForm"; // Assuming AuthForm is in a separate file
 import "@ant-design/v5-patch-for-react-19";
+import { redirect } from "next/navigation";
 
 const LoginComponent = () => {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      redirect('/dashboard')
+    }
+  }, []);
   return (
     <div className="flex h-[95%] rounded-xl w-3xl bg-amber-50 shadow-lg">
       {/* Left Banner Area */}

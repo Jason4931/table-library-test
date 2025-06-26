@@ -16,7 +16,7 @@ export async function login(credentials) {
     localStorage.setItem('token', data.token)
     localStorage.setItem('user', JSON.stringify(data.user))
 
-    redirect('/test');
+    redirect('/dashboard');
     // console.log('hello')
     // return "Login Berhasil"
   } else {

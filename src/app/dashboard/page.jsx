@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import MainLayout from "@/app/component/mainlayout";
+import MainLayout from "@/app/layout/mainlayout";
 
 const Dashboard = () => {
   return (

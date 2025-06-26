@@ -5,15 +5,9 @@ import { redirect, useRouter } from 'next/navigation';
 import { Form, Button, Input, InputNumber, Switch, Select } from 'antd';
 import { SwapLeftOutlined } from '@ant-design/icons';
 import '@ant-design/v5-patch-for-react-19';
+import MainLayout from "@/app/layout/mainlayout";
 
 export default function CreateData() {
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      redirect('/login')
-    }
-  }, []);
-
   const router = useRouter();
   const onFinish = values => {
     const existing = JSON.parse(localStorage.getItem('tableData') || '[]');
@@ -35,7 +29,7 @@ export default function CreateData() {
   };
 
   return (
-    <div className="p-8 bg-white">
+    <MainLayout>
       <Button onClick={() => redirect('/test')} icon={<SwapLeftOutlined />} className="mb-4">Back</Button>
       <Form
         name="basic"
@@ -97,6 +91,6 @@ export default function CreateData() {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </MainLayout>
   );
 }
