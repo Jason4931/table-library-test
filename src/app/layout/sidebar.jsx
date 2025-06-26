@@ -33,7 +33,7 @@ const Sidebar = ({ collapsed }) => {
       <div className="flex flex-col h-full justify-between top-0 left-0 z-50">
         <div>
           <div className="h-16 flex items-center justify-center text-white text-xl">
-            {collapsed ? "L" : "Lizant"}
+            {collapsed ? "JL" : "Jalan Kerja"}
           </div>
           <Menu
             theme="dark"

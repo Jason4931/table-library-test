@@ -4,6 +4,7 @@ import { Layout } from "antd";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { redirect } from "next/navigation";
+import '@ant-design/v5-patch-for-react-19';
 
 const { Sider, Content } = Layout;
 
