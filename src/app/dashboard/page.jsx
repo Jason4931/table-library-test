@@ -1,7 +1,13 @@
-import Dashboard from "@/app/ui/Dashboard";
+"use client";
+import React from "react";
+import MainLayout from "@/app/component/mainlayout";
 
-const MainPage = () => {
-  return <Dashboard />;
+const Dashboard = () => {
+  return (
+    <MainLayout>
+      <h1>Dashboard</h1>
+    </MainLayout>
+  );
 };
 
-export default MainPage;
+export default Dashboard;
