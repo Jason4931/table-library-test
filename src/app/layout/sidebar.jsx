@@ -5,7 +5,8 @@ import {
   HomeOutlined,
   AppstoreOutlined,
   LogoutOutlined,
-  UserOutlined
+  UserOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 import { usePathname, useRouter, redirect } from "next/navigation";
 
@@ -16,11 +17,22 @@ const Sidebar = ({ collapsed }) => {
   const menuItems = [
     { key: "/dashboard", icon: <HomeOutlined />, label: "Dashboard" },
     { key: "/test", icon: <AppstoreOutlined />, label: "Test" },
-    { key: "/usertest", icon: <UserOutlined />, label: "User" }
+    { key: "/usertest", icon: <UserOutlined />, label: "User" },
+    {
+      key: "settings",
+      icon: <SettingOutlined />,
+      label: "Settings",
+      children: [
+        { key: "/settings/profile", label: "Profile" },
+        { key: "/settings/security", label: "Security" },
+      ],
+    },
   ];
 
   const handleClick = ({ key }) => {
-    router.push(key);
+    if (key.startsWith("/")) {
+      router.push(key);
+    }
   };
 
   const handleLogout = () => {
