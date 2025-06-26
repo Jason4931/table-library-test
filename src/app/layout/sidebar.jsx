@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
-import { Menu } from "antd";
+import { Menu, Button } from "antd";
 import {
   HomeOutlined,
-  AppstoreOutlined
+  AppstoreOutlined,
+  LogoutOutlined
 } from "@ant-design/icons";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, redirect } from "next/navigation";
 
 const Sidebar = ({ collapsed }) => {
   const router = useRouter();
