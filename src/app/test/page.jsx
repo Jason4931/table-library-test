@@ -18,7 +18,7 @@ export default function Test() {
             nullable: true,
             default: '',
             features: {
-              filters: [...new Set(dataSource.map(row => row.name))].map(n => ({ text: n || '(empty)', value: n })),
+              filters: (data) => [...new Set(data.map(row => row.name))].map(n => ({ text: n || '(empty)', value: n })),
               onFilter: (v, r) => r.name == v,
             }
           },
@@ -35,7 +35,7 @@ export default function Test() {
             nullable: true,
             default: '',
             features: {
-              filters: [...new Set(dataSource.map(row => row.address))].map(n => ({ text: n || '(empty)', value: n })),
+              filters: (data) => [...new Set(data.map(row => row.address))].map(n => ({ text: n || '(empty)', value: n })),
               onFilter: (v, r) => r.address == v,
             }
           },
