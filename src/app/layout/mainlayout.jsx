@@ -1,12 +1,20 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "antd";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
+import { redirect } from "next/navigation";
 
 const { Sider, Content } = Layout;
 
 const MainLayout = ({ children }) => {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      redirect('/login')
+    }
+  }, []);
+
   const [collapsed, setCollapsed] = React.useState(false);
   const toggle = () => setCollapsed(!collapsed);
 

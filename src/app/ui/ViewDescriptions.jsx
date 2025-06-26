@@ -8,13 +8,6 @@ import { SwapLeftOutlined } from '@ant-design/icons';
 import '@ant-design/v5-patch-for-react-19';
 
 export function ViewDescriptions() {
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      redirect('/login')
-    }
-  }, []);
-
   const [items, setItems] = useState([]);
   const params = useParams();
 
@@ -34,21 +27,19 @@ export function ViewDescriptions() {
   }, [params.key])
 
   return (
-    <div className="p-8 bg-white">
-      <ConfigProvider
-        theme={{
-          components: {
-            Descriptions: {
-              labelColor: 'black',
-              titleColor: 'black',
-              contentColor: 'black'
-            },
+    <ConfigProvider
+      theme={{
+        components: {
+          Descriptions: {
+            labelColor: 'black',
+            titleColor: 'black',
+            contentColor: 'black'
           },
-        }}
-      >
-        <Button onClick={() => redirect('/test')} icon={<SwapLeftOutlined />} className="mb-2">Back</Button>
-        <Descriptions title="User Info" items={items} />
-      </ConfigProvider>
-    </div>
+        },
+      }}
+    >
+      <Button onClick={() => redirect('/test')} icon={<SwapLeftOutlined />} className="mb-2">Back</Button>
+      <Descriptions title="User Info" items={items} />
+    </ConfigProvider>
   );
 }

@@ -1,20 +1,6 @@
-'use client'
+"use client";
 import React from "react";
 import MainLayout from "@/app/layout/mainlayout";
-import {
-  BarChart3,
-  TrendingUp,
-  Users,
-  DollarSign,
-  ShoppingCart,
-  Eye,
-  ArrowUp,
-  ArrowDown,
-} from "lucide-react";
-import LineChart from "@/app/ui/charts/LineChart";
-import ColumnChart from "@/app/ui/charts/ColumnChart";
-import PieChart from "@/app/ui/charts/PieChart";
-import AreaChart from "@/app/ui/charts/AreaChart";
 
 const Dashboard = () => {
   const stats = [

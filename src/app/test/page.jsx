@@ -4,15 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { Button, Table, Switch, Select, Input, InputNumber } from 'antd';
 import '@ant-design/v5-patch-for-react-19';
 import { redirect, useRouter } from 'next/navigation';
+import MainLayout from "@/app/layout/mainlayout";
 
 export default function Test() {
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      redirect('/login')
-    }
-  }, []);
-
   const router = useRouter();
   const [dataSource, setDataSource] = useState([]);
 
@@ -245,11 +239,6 @@ export default function Test() {
     },
   ];
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    redirect('/');
-  }
-
   const handleCreate = () => {
     setDataSource(prev => {
       const usedKeys = new Set(prev.map(row => parseInt(row.key, 10)));
@@ -301,7 +290,7 @@ export default function Test() {
   });
 
   return (
-    <div className="p-8">
+    <MainLayout>
       <Button type="primary" onClick={handleCreate}>Add</Button>
       <Button onClick={() => router.push('/test/create')} className='mx-4'>Create Instead</Button>
       <Search
@@ -312,7 +301,6 @@ export default function Test() {
       />
       <Table dataSource={filteredData} columns={columns} pagination={false} className='my-4 border border-black rounded' />
       <Button type="primary" onClick={handleReset}>Reset Data (temp)</Button>
-      <Button color="danger" variant="solid" onClick={handleLogout} className='ml-4'>Logout</Button>
-    </div>
+    </MainLayout>
   );
 }

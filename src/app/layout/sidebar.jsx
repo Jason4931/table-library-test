@@ -1,11 +1,7 @@
 "use client";
 import React from "react";
 import { Menu } from "antd";
-import {
-  HomeOutlined,
-  UserOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, SettingOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 
 const Sidebar = ({ collapsed }) => {
