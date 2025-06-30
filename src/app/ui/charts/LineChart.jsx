@@ -10,18 +10,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { name: "Jan", value: 400 },
-  { name: "Feb", value: 300 },
-  { name: "Mar", value: 500 },
-  { name: "Apr", value: 280 },
-  { name: "May", value: 590 },
-];
 
-const LineChartComponent = () => {
+const LineChartComponent = ({ data, linecolor, type, title }) => {
   return (
     <div className="w-full h-96 p-4 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-bold mb-4 text-center">Line Chart Example</h2>
+      <h2 className="text-xl font-bold mb-4 text-center">{title}</h2>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -30,9 +23,9 @@ const LineChartComponent = () => {
           <Tooltip />
           <Legend />
           <Line
-            type="monotone"
+            type={type}
             dataKey="value"
-            stroke="#8884d8"
+            stroke={linecolor}
             activeDot={{ r: 8 }}
           />
         </LineChart>

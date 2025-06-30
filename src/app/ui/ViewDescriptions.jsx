@@ -7,21 +7,19 @@ import { Button } from "antd"
 import { SwapLeftOutlined } from '@ant-design/icons';
 import '@ant-design/v5-patch-for-react-19';
 
-export function ViewDescriptions() {
+export function ViewDescriptions({ storageKey, url }) {
   const [items, setItems] = useState([]);
   const params = useParams();
 
   useEffect(() => {
     console.log("Key :", params.key);
-    let row = JSON.parse(localStorage.getItem('tableData'))[params.key - 1];
-    if (row) {
-      setItems([
-        { label: 'Name', children: row.name || '(empty)' },
-        { label: 'Age', children: (row.age || row.age == 0) ? row.age : '(empty)' },
-        { label: 'Address', children: row.address || '(empty)' },
-        { label: 'Active', children: `${row.active}` },
-        { label: 'Status', children: row.status || '(empty)' },
-      ]);
+    let row = JSON.parse(localStorage.getItem(storageKey))[params.key - 1];
+    if (row && typeof row === 'object') {
+      const formattedItems = Object.entries(row).map(([key, value]) => ({
+        label: key.charAt(0).toUpperCase() + key.slice(1),
+        children: (value || value === 0 || value === false) ? `${value}` : '(empty)'
+      }));
+      setItems(formattedItems);
     }
     console.log(row)
   }, [params.key])
@@ -38,7 +36,7 @@ export function ViewDescriptions() {
         },
       }}
     >
-      <Button onClick={() => redirect('/test')} icon={<SwapLeftOutlined />} className="mb-2">Back</Button>
+      <Button onClick={() => redirect(url)} icon={<SwapLeftOutlined />} className="mb-2">Back</Button>
       <Descriptions title="User Info" items={items} />
     </ConfigProvider>
   );

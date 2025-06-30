@@ -5,7 +5,10 @@ export default function ViewData() {
   return (
     <>
       <MainLayout>
-        <ViewDescriptions />
+        <ViewDescriptions
+          storageKey="tableData"
+          url='/test'
+        />
       </MainLayout>
     </>
   );

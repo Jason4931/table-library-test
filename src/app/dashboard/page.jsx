@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import MainLayout from "@/app/layout/mainlayout";
-import { DollarSign, Users, ShoppingCart, Eye, BarChart3, ArrowUp, ArrowDown, TrendingUp } from "lucide-react";
+import { DollarSign, Users, ShoppingCart, Eye, BarChart3, ArrowUp, ArrowDown, TrendingUp, CarrotIcon } from "lucide-react";
 import BarChartComponent from "../ui/charts/BarChart";
 import LineChartComponent from "../ui/charts/LineChart";
 import PieChartComponent from "../ui/charts/PieChart";
@@ -40,6 +40,59 @@ const Dashboard = () => {
       icon: Eye,
       bgColor: "bg-purple-500",
     },
+    {
+      title: "Page Views",
+      value: "125,742",
+      change: "+18.7%",
+      isPositive: true,
+      icon: Eye,
+      bgColor: "bg-purple-500",
+    },
+    {
+      title: "Page Views",
+      value: "125,742",
+      change: "+18.7%",
+      isPositive: true,
+      icon: Eye,
+      bgColor: "bg-purple-500",
+    },
+    {
+      title: "Page Views",
+      value: "125,742",
+      change: "+18.7%",
+      isPositive: true,
+      icon: Eye,
+      bgColor: "bg-purple-500",
+    },
+    {
+      title: "Page Views",
+      value: "125,742",
+      change: "+18.7%",
+      isPositive: true,
+      icon: CarrotIcon,
+      bgColor: "bg-purple-500",
+    },
+  ];
+
+  const LineChartProps = {
+    data: [
+      { name: "Jan", value: 400 },
+      { name: "Feb", value: 300 },
+      { name: "Mar", value: 500 },
+      { name: "Apr", value: 280 },
+      { name: "May", value: 590 },
+    ],
+    lineColor: "#333333",
+    title: "Makan",
+    type: "monotone",
+  }
+
+  const barChartData = [
+    { name: "Jan", value: 400 },
+    { name: "Feb", value: 300 },
+    { name: "Mar", value: 500 },
+    { name: "Apr", value: 280 },
+    { name: "May", value: 590 },
   ];
 
   return (
@@ -122,7 +175,7 @@ const Dashboard = () => {
                 </div>
                 <TrendingUp className="w-5 h-5 text-blue-500" />
               </div>
-              <LineChartComponent />
+              <LineChartComponent {...LineChartProps} />
             </div>
 
             {/* Sales by Category */}
@@ -157,7 +210,7 @@ const Dashboard = () => {
                 </div>
                 <BarChart3 className="w-5 h-5 text-orange-500" />
               </div>
-              <BarChartComponent />
+              <BarChartComponent barColor="#f34e22" data={barChartData} title="testing" />
             </div>
 
             {/* Traffic Overview */}

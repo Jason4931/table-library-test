@@ -4,6 +4,7 @@ import { Menu, Button } from "antd";
 import {
   HomeOutlined,
   AppstoreOutlined,
+  FormOutlined,
   LogoutOutlined,
   UserOutlined,
   SettingOutlined
@@ -18,6 +19,7 @@ const Sidebar = ({ collapsed }) => {
     { key: "/dashboard", icon: <HomeOutlined />, label: "Dashboard" },
     { key: "/test", icon: <AppstoreOutlined />, label: "Test" },
     { key: "/usertest", icon: <UserOutlined />, label: "User" },
+    { key: "/forms", icon: <FormOutlined />, label: "Form" },
     {
       key: "settings",
       icon: <SettingOutlined />,

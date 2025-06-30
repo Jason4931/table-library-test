@@ -16,6 +16,10 @@ var __rest =
       }
     return t;
   };
+
+
+
+
 import React from "react";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Space } from "antd";
@@ -23,14 +27,16 @@ import "@ant-design/v5-patch-for-react-19";
 const onFinish = (values) => {
   console.log("Received values of form:", values);
 };
-const FormExample = () => (
+
+
+const FormRepeater = ({ formItem, formListName }) => (
   <Form
     name="dynamic_form_nest_item"
     onFinish={onFinish}
     style={{ maxWidth: 600 }}
     autoComplete="off"
   >
-    <Form.List name="users">
+    <Form.List name={formListName}>
       {(fields, { add, remove }) => (
         <>
           {fields.map((_a) => {
@@ -42,20 +48,15 @@ const FormExample = () => (
                 style={{ display: "flex", marginBottom: 8 }}
                 align="baseline"
               >
-                <Form.Item
-                  {...restField}
-                  name={[name, "first"]}
-                  rules={[{ required: true, message: "Missing first name" }]}
-                >
-                  <Input placeholder="First Name" />
-                </Form.Item>
-                <Form.Item
-                  {...restField}
-                  name={[name, "last"]}
-                  rules={[{ required: true, message: "Missing last name" }]}
-                >
-                  <Input placeholder="Last Name" />
-                </Form.Item>
+                {formItem.map((item, index) => (
+                  <Form.Item
+                    {...restField}
+                    name={[name, item.name]}
+                    rules={[{ required: item.required, message: item.message }]}
+                  >
+                    <Input type={item.type || "text"} placeholder={item.placeholder} />
+                  </Form.Item>
+                ))}
                 <MinusCircleOutlined onClick={() => remove(name)} />
               </Space>
             );
@@ -80,4 +81,4 @@ const FormExample = () => (
     </Form.Item>
   </Form>
 );
-export default FormExample;
+export default FormRepeater;
